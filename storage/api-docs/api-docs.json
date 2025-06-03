@@ -47,15 +47,7 @@
                                     "nombre"
                                 ],
                                 "properties": {
-                                    "nombre": {
-                                        "description": "Nombre del producto",
-                                        "type": "string"
-                                    },
-                                    "descripcion": {
-                                        "description": "Descripción del producto",
-                                        "type": "string",
-                                        "nullable": true
-                                    }
+                                    "nombre": {}
                                 },
                                 "type": "object"
                             }
@@ -98,10 +90,6 @@
                                 "properties": {
                                     "nombre": {
                                         "type": "string"
-                                    },
-                                    "descripcion": {
-                                        "type": "string",
-                                        "nullable": true
                                     }
                                 },
                                 "type": "object"
@@ -756,10 +744,6 @@
                     "nombre": {
                         "type": "string",
                         "example": "Producto A"
-                    },
-                    "descripcion": {
-                        "type": "string",
-                        "example": "Descripción del producto A"
                     }
                 },
                 "type": "object"

@@ -36,8 +36,7 @@ class ProductoController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"nombre"},
-     *             @OA\Property(property="nombre", type="string", description="Nombre del producto"),
-     *             @OA\Property(property="descripcion", type="string", description="Descripción del producto", nullable=true)
+     *             @OA\Property(property="nombre"),
      *         )
      *     ),
      *     @OA\Response(response=201, description="Producto creado"),
@@ -48,7 +47,6 @@ class ProductoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -76,7 +74,6 @@ class ProductoController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             @OA\Property(property="nombre", type="string"),
-     *             @OA\Property(property="descripcion", type="string", nullable=true)
      *         )
      *     ),
      *     @OA\Response(response=200, description="Producto actualizado"),

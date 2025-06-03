@@ -12,15 +12,14 @@ use Illuminate\Database\Eloquent\Model;
   *     title="Producto",
   *     required={"id", "nombre"},
   *     @OA\Property(property="id", type="integer", example=1),
-  *     @OA\Property(property="nombre", type="string", example="Producto A"),
-  *     @OA\Property(property="descripcion", type="string", example="Descripción del producto A"),
+  *     @OA\Property(property="nombre", type="string", example="Producto A")
   * )
   */
 class Producto extends Model
 {
     protected $fillable = [
         'nombre',
-        'descripcion',
+
     ];
 
     public function visitantes()
