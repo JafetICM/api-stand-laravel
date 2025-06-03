@@ -1,0 +1,902 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Expo AHRO Telecoms",
+        "description": "Documentación de la API para Expo AHRO",
+        "contact": {
+            "email": "tu-email@dominio.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/productos": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Obtener todos los productos",
+                "operationId": "70a301af8ea04ce2f2596a58758632cd",
+                "responses": {
+                    "200": {
+                        "description": "Lista de productos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Producto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Agregar un nuevo producto",
+                "operationId": "4ff8851cb6bfe92aa226cdc804917ff0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "description": "Nombre del producto",
+                                        "type": "string"
+                                    },
+                                    "descripcion": {
+                                        "description": "Descripción del producto",
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Producto creado"
+                    },
+                    "422": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/api/productos/{id}": {
+            "put": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Actualizar un producto",
+                "operationId": "20275afdbab1759ad2d46f3dcfbeaeeb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Producto actualizado"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Eliminar un producto",
+                "operationId": "ea733033fbff1681e04f8c4d0e11e0bc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto eliminado"
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/seguimientos": {
+            "post": {
+                "tags": [
+                    "Seguimientos"
+                ],
+                "summary": "Registrar un nuevo seguimiento",
+                "operationId": "8a5b548eef49390190e47bbf949ceaf1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "visitante_id",
+                                    "tipo",
+                                    "comentarios"
+                                ],
+                                "properties": {
+                                    "visitante_id": {
+                                        "type": "integer"
+                                    },
+                                    "tipo": {
+                                        "description": "Tipo de seguimiento",
+                                        "type": "string"
+                                    },
+                                    "comentarios": {
+                                        "description": "Comentarios",
+                                        "type": "string"
+                                    },
+                                    "fecha": {
+                                        "description": "Fecha del seguimiento",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Seguimiento creado"
+                    },
+                    "422": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/api/seguimientos/{id}": {
+            "put": {
+                "tags": [
+                    "Seguimientos"
+                ],
+                "summary": "Actualizar un seguimiento",
+                "operationId": "8e2fc546a437fda83d24e1c25f6b07c7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del seguimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tipo": {
+                                        "type": "string"
+                                    },
+                                    "comentarios": {
+                                        "type": "string"
+                                    },
+                                    "fecha": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Seguimiento actualizado"
+                    },
+                    "404": {
+                        "description": "Seguimiento no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Seguimientos"
+                ],
+                "summary": "Eliminar un seguimiento",
+                "operationId": "ca98e86fa50b114bac0794354c1e0c22",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del seguimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Seguimiento eliminado"
+                    },
+                    "404": {
+                        "description": "Seguimiento no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/usuarios": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtener todos los usuarios",
+                "operationId": "d57cb6c6a223fe9801b81b52dcac45df",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuarios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Usuario"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Crear un nuevo usuario",
+                "operationId": "96d159a6919ad7ade81fd7af5c7a6be8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Juan Pérez"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "juan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario creado"
+                    },
+                    "422": {
+                        "description": "Validación fallida"
+                    }
+                }
+            }
+        },
+        "/api/usuarios/{id}": {
+            "put": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Actualizar un usuario",
+                "operationId": "ee6ffe04a5be33eeca7f8f90c91d9803",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Eliminar un usuario",
+                "operationId": "0f00f1d6dae33b81a874725503534c06",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado"
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/visitantes": {
+            "get": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Obtener todos los visitantes",
+                "operationId": "a1434dcd119a6bda3dd1b9c34e3c76c3",
+                "responses": {
+                    "200": {
+                        "description": "Lista de visitantes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Visitante"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Crear un nuevo visitante",
+                "operationId": "942bc27c2cdc1dc9ec16a7dda004ee25",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_completo": {
+                                        "description": "Nombre completo del visitante",
+                                        "type": "string"
+                                    },
+                                    "correo": {
+                                        "description": "Correo electrónico del visitante",
+                                        "type": "string"
+                                    },
+                                    "telefono": {
+                                        "description": "Teléfono del visitante",
+                                        "type": "string"
+                                    },
+                                    "productos": {
+                                        "description": "Productos asociados al visitante",
+                                        "type": "array",
+                                        "items": {
+                                            "description": "ID del producto",
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Visitante creado"
+                    },
+                    "422": {
+                        "description": "Validación de datos fallida"
+                    }
+                }
+            }
+        },
+        "/api/visitantes/{id}": {
+            "get": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Obtener un visitante por ID",
+                "operationId": "dd21b35ef6c2e60cf8c0a0972431275d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del visitante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Información del visitante",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Visitante"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Visitante no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Actualizar un visitante",
+                "operationId": "e99a6651d4f53d6493fb12394d0ec8bf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del visitante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_completo": {
+                                        "type": "string"
+                                    },
+                                    "correo": {
+                                        "type": "string"
+                                    },
+                                    "telefono": {
+                                        "type": "string"
+                                    },
+                                    "productos": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Visitante actualizado"
+                    },
+                    "404": {
+                        "description": "Visitante no encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Eliminar un visitante",
+                "operationId": "2ad586253fece0ddae9b5c674a007ee3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del visitante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Visitante eliminado"
+                    },
+                    "404": {
+                        "description": "Visitante no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/visitantes/asignar-productos": {
+            "post": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Asignar productos de interés a un visitante",
+                "operationId": "c59e176f815a1d7cd741cf02700d499f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "visitante_id",
+                                    "productos"
+                                ],
+                                "properties": {
+                                    "visitante_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "productos": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Productos asignados correctamente"
+                    },
+                    "422": {
+                        "description": "Validación de datos fallida"
+                    }
+                }
+            }
+        },
+        "/api/visitantes/{visitante_id}/productos": {
+            "get": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Obtener productos de interés de un visitante",
+                "operationId": "e61633fcc17da5fb3ecc1dbae33f9a6e",
+                "parameters": [
+                    {
+                        "name": "visitante_id",
+                        "in": "path",
+                        "description": "ID del visitante",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de productos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Producto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Visitante no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/visitantes/producto/{producto_id}": {
+            "get": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Obtener visitantes interesados en un producto",
+                "operationId": "215dc9cf9ef3cf7c0093086322a61fda",
+                "parameters": [
+                    {
+                        "name": "producto_id",
+                        "in": "path",
+                        "description": "ID del producto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de visitantes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Visitante"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Producto no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/visitantes/exportar": {
+            "get": {
+                "tags": [
+                    "Visitantes"
+                ],
+                "summary": "Exportar la lista de visitantes a CSV",
+                "operationId": "cfc09dbc93a46da2422d59a9f4130a15",
+                "responses": {
+                    "200": {
+                        "description": "Archivo CSV generado para descarga",
+                        "content": {
+                            "text/csv": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Producto": {
+                "title": "Producto",
+                "required": [
+                    "id",
+                    "nombre"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Producto A"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripción del producto A"
+                    }
+                },
+                "type": "object"
+            },
+            "Seguimiento": {
+                "title": "Seguimiento",
+                "required": [
+                    "id",
+                    "visitante_id",
+                    "tipo",
+                    "comentarios"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "visitante_id": {
+                        "description": "ID del visitante asociado",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "tipo": {
+                        "description": "Tipo de seguimiento",
+                        "type": "string"
+                    },
+                    "comentarios": {
+                        "description": "Comentarios del seguimiento",
+                        "type": "string"
+                    },
+                    "fecha": {
+                        "description": "Fecha del seguimiento",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Usuario": {
+                "required": [
+                    "id",
+                    "nombre",
+                    "correo"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Juan Pérez"
+                    },
+                    "correo": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "juan@example.com"
+                    }
+                },
+                "type": "object"
+            },
+            "Visitante": {
+                "title": "Visitante",
+                "required": [
+                    "id",
+                    "nombre_completo",
+                    "correo",
+                    "telefono"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre_completo": {
+                        "type": "string",
+                        "example": "Juan Pérez"
+                    },
+                    "correo": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "juan.perez@example.com"
+                    },
+                    "telefono": {
+                        "type": "string",
+                        "example": "+521234567890"
+                    },
+                    "empresa": {
+                        "type": "string",
+                        "example": "Empresa S.A."
+                    },
+                    "cargo": {
+                        "type": "string",
+                        "example": "Gerente de ventas"
+                    },
+                    "fecha_registro": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-06-02T15:30:00Z"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "example": "Nuevo"
+                    },
+                    "notas": {
+                        "type": "string",
+                        "example": "Cliente interesado en producto X"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Productos",
+            "description": "Productos"
+        },
+        {
+            "name": "Seguimientos",
+            "description": "Seguimientos"
+        },
+        {
+            "name": "Usuarios",
+            "description": "Usuarios"
+        },
+        {
+            "name": "Visitantes",
+            "description": "Visitantes"
+        }
+    ]
+}

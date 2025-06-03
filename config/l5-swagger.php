@@ -1,5 +1,5 @@
 <?php
-
+//config/l5-swagger.php
 return [
     'default' => 'default',
     'documentations' => [
@@ -13,8 +13,10 @@ return [
                  * Route for accessing api documentation interface
                  */
                 'api' => 'api/documentation',
+                'docs' => 'api-docs.json',
             ],
             'paths' => [
+                'docs_json' => 'api-docs.json',
                 /*
                  * Edit to include full URL in ui for assets
                  */
