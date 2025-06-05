@@ -10,7 +10,29 @@ use Illuminate\Support\Facades\Validator;
 
 class SeguimientoController extends Controller
 {
-    
+        /**
+     * Obtener los seguimientos de un visitante específico
+     *
+     * @OA\Get(
+     *     path="/api/seguimientos/{visitante_id}",
+     *     summary="Obtener seguimientos de un visitante",
+     *     tags={"Seguimientos"},
+     *     @OA\Parameter(
+     *         name="visitante_id",
+     *         in="path",
+     *         description="ID del visitante para obtener sus seguimientos",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Lista de seguimientos",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Seguimiento"))
+     *     ),
+     *     @OA\Response(response=404, description="Visitante no encontrado")
+     * )
+     */
+
     public function index($visitante_id)
     {
         $seguimientos = Seguimiento::where('visitante_id', $visitante_id)->get();

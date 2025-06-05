@@ -133,6 +133,45 @@
                 }
             }
         },
+        "/api/seguimientos/{visitante_id}": {
+            "get": {
+                "tags": [
+                    "Seguimientos"
+                ],
+                "summary": "Obtener seguimientos de un visitante",
+                "description": "Obtener los seguimientos de un visitante específico",
+                "operationId": "6971ef5691cf0512672de48e0d28931f",
+                "parameters": [
+                    {
+                        "name": "visitante_id",
+                        "in": "path",
+                        "description": "ID del visitante para obtener sus seguimientos",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de seguimientos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Seguimiento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Visitante no encontrado"
+                    }
+                }
+            }
+        },
         "/api/seguimientos": {
             "post": {
                 "tags": [
